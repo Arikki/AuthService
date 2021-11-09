@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,11 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection="authDetails")
+@Builder
 public class AuthRequest {
 
 	private String firstName;
 	private String lastName;
-	private String dateOfBirth;
+	private String dob;
 	@Id
 	private String email;
 	

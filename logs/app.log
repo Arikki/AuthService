@@ -1,0 +1,21 @@
+2021-11-09 10:00:26,437 INFO com.netflix.discovery.DiscoveryClient [restartedMain] Getting all instance registry info from the eureka server
+2021-11-09 10:00:26,518 INFO com.netflix.discovery.DiscoveryClient [restartedMain] The response status is 200
+2021-11-09 10:00:26,519 INFO com.netflix.discovery.DiscoveryClient [restartedMain] Starting heartbeat executor: renew interval is: 30
+2021-11-09 10:00:26,520 INFO com.netflix.discovery.InstanceInfoReplicator [restartedMain] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2021-11-09 10:00:26,521 INFO com.netflix.discovery.DiscoveryClient [restartedMain] Discovery Client initialized at timestamp 1636432226521 with initial instances count: 1
+2021-11-09 10:00:26,525 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [restartedMain] Registering application AUTHSERVICE with eureka with status UP
+2021-11-09 10:00:26,526 INFO com.netflix.discovery.DiscoveryClient [restartedMain] Saw local status change event StatusChangeEvent [timestamp=1636432226526, current=UP, previous=STARTING]
+2021-11-09 10:00:26,527 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTHSERVICE/192.168.1.38:authservice:8080: registering service...
+2021-11-09 10:00:26,529 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-09 10:00:26,531 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [restartedMain] Updating port to 8080
+2021-11-09 10:00:26,570 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTHSERVICE/192.168.1.38:authservice:8080 - registration status: 204
+2021-11-09 10:00:27,017 INFO com.authService.AuthServiceApplication [restartedMain] Started AuthServiceApplication in 3.507 seconds (JVM running for 283.178)
+2021-11-09 10:00:27,020 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2021-11-09 10:01:29,364 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [Thread-8] Unregistering application AUTHSERVICE with eureka with status DOWN
+2021-11-09 10:01:29,365 INFO com.netflix.discovery.DiscoveryClient [Thread-8] Saw local status change event StatusChangeEvent [timestamp=1636432289365, current=DOWN, previous=UP]
+2021-11-09 10:01:29,365 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTHSERVICE/192.168.1.38:authservice:8080: registering service...
+2021-11-09 10:01:29,382 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTHSERVICE/192.168.1.38:authservice:8080 - registration status: 204
+2021-11-09 10:01:29,669 INFO com.netflix.discovery.DiscoveryClient [Thread-8] Shutting down DiscoveryClient ...
+2021-11-09 10:01:32,689 INFO com.netflix.discovery.DiscoveryClient [Thread-8] Unregistering ...
+2021-11-09 10:01:32,721 INFO com.netflix.discovery.DiscoveryClient [Thread-8] DiscoveryClient_AUTHSERVICE/192.168.1.38:authservice:8080 - deregister  status: 200
+2021-11-09 10:01:32,757 INFO com.netflix.discovery.DiscoveryClient [Thread-8] Completed shut down of DiscoveryClient

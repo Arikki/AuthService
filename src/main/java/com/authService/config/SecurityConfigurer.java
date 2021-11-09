@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -46,6 +47,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private JwtAuthFailureHandler jwtAuthFailureHandler;
+	
+	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -111,6 +114,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		   .antMatchers("/login")
 		   .permitAll()
 		   .antMatchers("/signup")
+		   .permitAll()
+		   .antMatchers("/actuator/**")
 		   .permitAll()
 		   .antMatchers(HttpMethod.OPTIONS)
 		   .permitAll()

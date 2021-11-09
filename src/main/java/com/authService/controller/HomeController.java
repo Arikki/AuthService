@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -55,27 +57,28 @@ public class HomeController {
 	private  String JWT_TOKEN_VALIDITY;
 	
 	
-	
+	private Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@PostMapping("/login")
 	public AuthResponse auth(@RequestBody AuthRequest authReq) throws Exception {
-//		System.out.println("Inside Auth");
-//		System.out.println("Auth Request " + authReq.toString());
+		
+		logger.info("Inside Home controller for login of " + authReq.getEmail());
 		try {
 		authenticationManager.authenticate(
 new UsernamePasswordAuthenticationToken(authReq.getEmail(),authReq.getPassword()));
 		}
 		catch(AuthenticationException e) {
+			
 			throw new UsernameNotFoundException(e.getMessage());
 		}
 		
 		
 		final UserDetails userDetails = userSvc.loadUserByUsername(authReq.getEmail());
-		System.out.println("User details object "+userDetails.toString());
+//		System.out.println("User details object "+userDetails.toString());
 		final String token = jwtUtil.generateToken(userDetails);
-		final Date tokenExpiresIn = jwtUtil.getExpirationDateFromToken(token);
-		
-		System.out.println("Token expires is "+ tokenExpiresIn);
+//		final Date tokenExpiresIn = jwtUtil.getExpirationDateFromToken(token);
+		logger.info(authReq.getEmail() +" is a valid user");
+//		System.out.println("Token expires is "+ tokenExpiresIn);
 		return new AuthResponse( authReq.getEmail(), token, JWT_TOKEN_VALIDITY);
 		//return createJwt(authReq.getEmail(),"login");	
 	}
@@ -89,14 +92,14 @@ new UsernamePasswordAuthenticationToken(authReq.getEmail(),authReq.getPassword()
 	@PostMapping("/signup")
 	public AuthResponse signUp(@RequestBody AuthRequest request) {
 
-		
+		logger.info("Inside Home controller for signup of " + request.getEmail());
 		authProfileSvc.addAuthDetails(request);
 		UserDetails userDetails = new User(request.getEmail(),
 				request.getPassword(), new ArrayList<>());
 		
 		System.out.println("User details object "+userDetails.toString());
 		final String token = jwtUtil.generateToken(userDetails);
-
+		logger.info(request.getEmail() +" signed up successfully");
 		return new AuthResponse( request.getEmail(), token, JWT_TOKEN_VALIDITY);
 		
 	}
@@ -113,7 +116,7 @@ new UsernamePasswordAuthenticationToken(authReq.getEmail(),authReq.getPassword()
 	
 	@GetMapping("/basicDetails/{id}")
 	public AuthRequest getAuthDetails(@PathVariable ("id") String email) {
-		
+		logger.info("Inside Home controller to fetch basic details of user " + email);
 		return authProfileSvc.getAuthDetails(email, false);
 	}
 	

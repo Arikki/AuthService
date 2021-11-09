@@ -3,6 +3,8 @@ package com.authService.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,10 +27,12 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
+	Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+		logger.info(username + " lookup in DB");
 
 		AuthRequest authDetails = authProfileSvc.getAuthDetails(username,true);
 		
